@@ -1,0 +1,19 @@
+{
+  "name": "obamacord",
+  "version": "0.0.1",
+  "description": "Discord Mod Client very good",
+  "main": "src/index.js",
+  "scripts": {
+    "inject": "node scripts/inject.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FutureDeveloperZ/Obamacord.git"
+  },
+  "author": "Obamacord",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FutureDeveloperZ/Obamacord/issues"
+  },
+  "homepage": "https://github.com/FutureDeveloperZ/Obamacord#readme"
+}
