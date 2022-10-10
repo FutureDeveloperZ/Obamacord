@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/FutureDeveloperZ/Obamacord/issues"
   },
-  "homepage": "https://github.com/FutureDeveloperZ/Obamacord#readme"
+  "homepage": "https://github.com/FutureDeveloperZ/Obamacord#readme",
+  "dependencies": {
+    "eslint": "^8.25.0",
+    "module": "^1.2.5"
+  }
 }
