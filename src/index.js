@@ -1,5 +1,5 @@
 const { mkdir, readdir, writeFile } = require('fs').promises;
-const { join } = require('path');
+const { join, sep } = require('path');
 
 async function getDiscordDirectory() {
 	const appData = process.env.LOCALAPPDATA;
@@ -10,15 +10,18 @@ async function getDiscordDirectory() {
 	return latestDiscordDirectory;
 }
 
-getDiscordDirectory().then(console.log);
-
 
 async function injectPatcher() {
 	const discordDirectory = await getDiscordDirectory();
 	await mkdir(discordDirectory);
 	await Promise.all([
-		writeFile(join(discordDirectory, 'index.js'), 'console.log("Hello World")'),
+		writeFile(join(discordDirectory, 'index.js'), `require(\`${__dirname.replace(RegExp(sep.repeat(2), 'g'), '/')}/patcher.js\`)`),
 	]);
+	writeFile(
+		join(discordDirectory, 'package.json'),
+		JSON.stringify({ main: 'index.js', name: 'discord' }),
+	);
+
 	return true;
 }
 
