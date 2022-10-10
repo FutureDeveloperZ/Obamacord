@@ -10,6 +10,10 @@ const electronExp = new Proxy(electron, {
 		switch(prop) {
 		case 'BrowserWindow':
 			return OBrowserWindow;
+		case '__esModule':
+			return true;
+		case 'default':
+			return electronExp;
 		default:
 			return target[prop];
 		}
