@@ -1,8 +1,8 @@
-const { BrowserWindow } = require('electron');
+const electron = require('electron');
 const { join } = require('path');
 
 
-class OBrowserWindow extends BrowserWindow {
+class BrowserWindow extends electron.BrowserWindow {
 	constructor(options) {
 		if(options?.webPreferences?.preload && options.title) {
 			const org = options.webPreferences.preload;
@@ -19,4 +19,4 @@ class OBrowserWindow extends BrowserWindow {
 	}
 }
 
-module.exports = OBrowserWindow;
+module.exports = BrowserWindow;

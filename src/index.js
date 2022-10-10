@@ -1,4 +1,5 @@
 const { mkdir, readdir, writeFile } = require('fs').promises;
+const { rmdir } = require('fs');
 const { join, sep } = require('path');
 
 async function getDiscordDirectory() {
@@ -15,7 +16,7 @@ async function injectPatcher() {
 	const discordDirectory = await getDiscordDirectory();
 	await mkdir(discordDirectory);
 	await Promise.all([
-		writeFile(join(discordDirectory, 'index.js'), `require(\`${__dirname.replace(RegExp(sep.repeat(2), 'g'), '/')}/patcher.js\`)`),
+		writeFile(join(discordDirectory, 'index.js'), `require(\`${__dirname.replace(RegExp(sep.repeat(2), 'g'), '/')}/patcher.js\`); require("../app.asar");`),
 	]);
 	writeFile(
 		join(discordDirectory, 'package.json'),
@@ -24,5 +25,11 @@ async function injectPatcher() {
 
 	return true;
 }
+injectPatcher();
 
-injectPatcher().then(console.log);
+async function uninjectPatcher() {
+	const discordDirectory = await getDiscordDirectory();
+	await rmdir(discordDirectory);
+
+	return true;
+}

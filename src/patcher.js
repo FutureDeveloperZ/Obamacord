@@ -1,5 +1,5 @@
 const electronPath = require.resolve('electron');
-const OBrowserWindow = require('./BrowserWindow');
+const BrowserWindow = require('./BrowserWindow');
 
 const electron = require('electron');
 
@@ -9,7 +9,7 @@ const electronExp = new Proxy(electron, {
 	get(target, prop) {
 		switch(prop) {
 		case 'BrowserWindow':
-			return OBrowserWindow;
+			return BrowserWindow;
 		case '__esModule':
 			return true;
 		case 'default':
