@@ -4,7 +4,8 @@
   "description": "Discord Mod Client very good",
   "main": "src/index.js",
   "scripts": {
-    "inject": "node scripts/inject.js"
+    "inject": "node scripts/inject.js",
+    "uninject": "node scripts/uninject.js"
   },
   "repository": {
     "type": "git",
