@@ -4,5 +4,5 @@ const { join } = require('path');
 const ObamaNative = require('./ObamaNative');
 
 contextBridge.exposeInMainWorld('ObamaNative', ObamaNative);
-webFrame.executeJavaScript(readFileSync(join(__dirname, 'Obama/index.js'), 'utf-8'));
+webFrame.executeJavaScript(readFileSync(join(__dirname, 'Obama/ObamaClient.js'), 'utf-8'));
 require(process.env.DISCORD_PRELOAD);
