@@ -1,12 +1,7 @@
-const { IpcMain } = require('electron');
+const { ipcMain } = require('electron');
+const { readFileSync } = require('fs');
+const { join } = require('path');
 
-const openDevTools = e => e.sender.openDevTools();
-
-
-const registerIpcEvents = () => {
-	IpcMain.on('OPEN_DEVTOOLS', openDevTools);
-};
-
-module.exports = {
-	registerIpcEvents,
-};
+ipcMain.on('OBAMA_JS', (e) => {
+	e.returnValue = readFileSync(join(__dirname, '../index.js'), 'utf-8');
+});

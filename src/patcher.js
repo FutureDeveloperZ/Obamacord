@@ -37,5 +37,6 @@ const init = () => {
 	});
 };
 
+require('./Obama/modules/ipc');
 
 electron.app.once('ready', init);
