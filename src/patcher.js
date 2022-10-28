@@ -16,9 +16,10 @@ class BrowserWindow extends electron.BrowserWindow {
 		super(options);
 	}
 }
+Object.assign(BrowserWindow, electron.BrowserWindow);
 
 const init = () => {
-	Object.assign(BrowserWindow, electron.BrowserWindow);
+	Object.defineProperty(BrowserWindow, 'name', { value: 'BrowserWindow', configurable: true });
 	const electronExp = Object.assign({}, electron, { BrowserWindow });
 	const electronPath = require.resolve('electron');
 	delete require.cache[electronPath].exports;

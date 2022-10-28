@@ -12,7 +12,7 @@ async function injectPatcher() {
 
 	await mkdir(discordDirectory);
 	await Promise.all([
-		writeFile(join(discordDirectory, 'index.js'), `require(\`${__dirname.replace(RegExp(sep.repeat(2), 'g'), '/')}/../src/patcher.js\`); require("../app.asar");`),
+		writeFile(join(discordDirectory, 'index.js'), `require(\`${__dirname.replace(RegExp(sep.repeat(2), 'g'), '/')}/../dist/patcher.js\`); require("../app.asar");`),
 	]);
 	writeFile(
 		join(discordDirectory, 'package.json'),

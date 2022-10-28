@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "inject": "node scripts/inject.js",
-    "uninject": "node scripts/uninject.js"
+    "uninject": "node scripts/uninject.js",
+    "build": "node scripts/build.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/FutureDeveloperZ/Obamacord#readme",
   "dependencies": {
+    "esbuild": "^0.15.12",
     "eslint": "^8.25.0",
     "module": "^1.2.5"
   }
