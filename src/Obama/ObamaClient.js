@@ -1,5 +1,10 @@
+// require webpack and get the module
+const webpack = require('../Obama/modules/webpack');
+
 async function start() {
-	console.log('Something Started and is not my fault');
+	console.log('HIIIIIIIIIIII');
+	console.log(webpack);
+
 }
 
 start();

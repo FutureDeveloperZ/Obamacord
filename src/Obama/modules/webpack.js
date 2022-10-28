@@ -1,6 +1,6 @@
 module.exports = class ObamaWebpacks {
-	getModule() {
-		// gets webpack module
+	getModule(filter) {
+		console.log(filter);
 	}
 
 };

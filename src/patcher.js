@@ -4,7 +4,6 @@ const BrowserWindow = require('./BrowserWindow');
 const electron = require('electron');
 
 console.log('HI is me Obama');
-
 const electronExp = new Proxy(electron, {
 	get(target, prop) {
 		switch(prop) {
@@ -37,4 +36,3 @@ electron.app.once('ready', () => {
 		callback({ cancel: false, responseHeaders: details.responseHeaders });
 	});
 });
-
