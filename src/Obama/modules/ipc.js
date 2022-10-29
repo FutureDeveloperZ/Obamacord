@@ -1,21 +1,35 @@
+/* eslint-disable no-unused-vars */
 const { ipcMain } = require('electron');
-const { readFileSync, readdirSync } = require('fs');
-const { join } = require('path');
+const { readFileSync } = require('fs');
+const { readdir, readFile } = require('fs/promises');
+const { join, resolve, extname } = require('path');
 
-const themeDir = join(__dirname, './themes');
+const themeDir = resolve(__dirname, '../themes/');
+
+async function getThemes(name) {
+	// if (typeof name === !'string') throw console.log('Name must be a string');
+	const theManifest = JSON.parse(
+		await readFile(join(themeDir, name, 'manifest.json'), {
+			encoding: 'utf8',
+		}));
+
+	return {
+		name: theManifest.name,
+		manifest: theManifest,
+	};
+}
 
 ipcMain.on('OBAMA_JS', (e) => {
 	e.returnValue = readFileSync(join(__dirname, 'index.js'), 'utf-8');
 });
 
 ipcMain.handle('THEMES_LIST', async () => {
-	const themes = [];
-	const files = await readdirSync(themeDir);
-	files.forEach((file) => {
-		if (file.endsWith('.css')) {
-			themes.push(file);
-		}
-	});
-	return themes;
+	const themes = (await readdir(themeDir, { withFileTypes: true }));
+	const pass = [];
+
+	for (const theme of themes) {
+		pass.push(await getThemes(theme.name));
+	}
+	return pass;
 });
 

@@ -1,12 +1,10 @@
 const { ipcRenderer } = require('electron');
 
-module.exports = {
-	themes:{
-		themeList   : async function() {
-			ipcRenderer.invoke('THEMES_LIST');
-		},
+const ObamaNative = {
+	themes : {
+		themeList   : async () => ipcRenderer.invoke('THEMES_LIST'),
 		enableThemes: async function() {
-			const themes = await this.themeList();
+			const themes = await ObamaNative.themes.themeList();
 			const pass = [];
 			pass.push(themes);
 			return pass;
@@ -15,3 +13,4 @@ module.exports = {
 
 };
 
+module.exports = ObamaNative;

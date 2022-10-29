@@ -1,22 +1,15 @@
-/* eslint-disable no-undef */
-const extension = '.css';
-const themes = []
+/* eslint-disable no-unused-vars */
+const themes = new Map();
 async function loadThemes() {
-	// const themes = await ipcRenderer.invoke('GET_THEMES');
-	return themes;
+	for (const theme of await window.ObamaNative.themes.enableThemes()) {
+		themes.set(theme.name, theme);
+	}
 }
 
-function enableThemes() {
-	// const themes = loadThemes();
-	console.log(themes);
-	themes.forEach((theme) => {
-		const themePath = `./themes/${theme}`;
-		// const css = fs.readFileSync(themePath, 'utf8');
-		// const style = document.createElement('style');
-		// style.innerHTML = themes;
-		// style.appendChild(document.createTextNode(css));
-		// document.head.appendChild(style);
-	});
+async function enableThemes() {
+	const loadedThemes = themes;
 }
 
-console.log(window.ObamaNative);
+module.exports = {
+	enableThemes,
+};

@@ -6,6 +6,7 @@ window.obamacord = obamacord;
 
 async function start() {
 	console.log('HIIIIIIIIIIII');
+
 }
 
 start();
