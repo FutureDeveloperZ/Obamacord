@@ -1,10 +1,17 @@
 const { ipcRenderer } = require('electron');
 
 module.exports = {
-	ipc: {
-		openDevTools: function() {
-			return ipcRenderer.send('CLOSE_DEVTOOLS');
+	themes:{
+		themeList   : async function() {
+			ipcRenderer.invoke('THEMES_LIST');
+		},
+		enableThemes: async function() {
+			const themes = await this.themeList();
+			const pass = [];
+			pass.push(themes);
+			return pass;
 		},
 	},
+
 };
 
