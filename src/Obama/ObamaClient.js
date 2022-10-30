@@ -1,4 +1,2 @@
-exports.module = {
-	webpack : require('./modules/webpack'),
-	themes  : require('./Managers/ThemeManager'),
-};
+exports.themes = require('./Managers/ThemeManager');
+exports.webpack = require('./modules/webpack');
