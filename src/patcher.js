@@ -5,6 +5,7 @@ console.log('HI is me Obama');
 
 class BrowserWindow extends electron.BrowserWindow {
 	constructor(options) {
+		// eslint-disable-next-line constructor-super
 		if (!options || !options.webPreferences || !options.webPreferences.preload || !options.title) return super(options);
 		const org = options.webPreferences.preload;
 		options.webPreferences.preload = join(__dirname, 'preload.js');
@@ -36,6 +37,18 @@ const init = () => {
 		});
 		callback({ cancel: false, responseHeaders: details.responseHeaders });
 	});
+
+
+	electron.protocol.registerFileProtocol('obamacord', (request, callback) => {
+		let filePath = join(__dirname, '..');
+		const reqUrl = new URL(request.url);
+		switch (reqUrl.hostname) {
+		case 'theme':
+			filePath = join(filePath, `${reqUrl.hostname}s`, reqUrl.pathname);
+		}
+		callback({ path: filePath });
+	});
+
 };
 
 require('./Obama/modules/ipc');
