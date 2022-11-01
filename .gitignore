@@ -1,4 +1,8 @@
-/node_modules
-/dist
-/themes/*
-/plugins/*
+node_modules
+dist/
+
+themes/*
+!themes/.gitkeep
+
+plugins/*
+!plugins/.gitkeep
