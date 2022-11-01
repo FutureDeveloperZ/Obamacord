@@ -7,24 +7,30 @@ join our [Discord](https://discord.gg/eTvYv95PCG)
 ## Installation
 
 ### Windows
+ Please use powershell and install Git and Node.js
+
 
 1.  Clone the repository
 ```
 git clone https://github.com/FutureDeveloperZ/Obamacord
 ```
-2.  Install dependencies
+2.  Enter the directory
+```
+cd Obamacord
+```
+3.  Install dependencies
 ```
 pnpm install
 ```
-3. Build the project
+4. Build the project
 ```
 pnpm build
 ```
-4. Inject the client
+5. Inject the client
 ```
 pnpm inject
 ```
-5. Kill Discord and start it again
+6. Kill Discord and start it again
 
 ## Uninstallation
 
