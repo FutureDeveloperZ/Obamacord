@@ -24,7 +24,7 @@ ipcMain.on('OBAMA_JS', (e) => {
 });
 
 ipcMain.handle('THEMES_LIST', async () => {
-	const themes = (await readdir(themeDir, { withFileTypes: true }));
+	const themes = (await readdir(themeDir, { withFileTypes: true })).filter((dirent) => dirent.isDirectory());
 	const pass = [];
 
 	for (const theme of themes) {
