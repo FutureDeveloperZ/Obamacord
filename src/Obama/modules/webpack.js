@@ -31,6 +31,9 @@ Object.defineProperty(window, 'webpackChunkdiscord_app', {
 	configurable: true,
 });
 
+function rawModule() { return inst ? Object.values(inst.c) : []; }
+
 module.exports = {
 	webpackChunk,
+	rawModule,
 };

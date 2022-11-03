@@ -1,7 +1,11 @@
 const electron = require('electron');
-const { join } = require('path');
+const electronPath = require.resolve('electron');
+const { join, dirname } = require('path');
 
 console.log('HI is me Obama');
+
+const discordPath = join(dirname(require.main.filename), '..', 'app.orig.asar');
+
 
 class BrowserWindow extends electron.BrowserWindow {
 	constructor(options) {
@@ -19,10 +23,12 @@ class BrowserWindow extends electron.BrowserWindow {
 }
 Object.assign(BrowserWindow, electron.BrowserWindow);
 
+electron.app.setAppPath(discordPath);
+
+
 const init = () => {
 	Object.defineProperty(BrowserWindow, 'name', { value: 'BrowserWindow', configurable: true });
 	const electronExp = Object.assign({}, electron, { BrowserWindow });
-	const electronPath = require.resolve('electron');
 	delete require.cache[electronPath].exports;
 	require.cache[electronPath].exports = electronExp;
 

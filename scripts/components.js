@@ -6,7 +6,7 @@ async function getDiscordDirectory() {
 	const discordDirectory = join(appData, 'discord');
 	const discordVersions = await readdir(discordDirectory);
 	const latestVersion = discordVersions.filter(path => path.startsWith('app-')).reverse()[0];
-	const latestDiscordDirectory = join(discordDirectory, latestVersion, 'resources', 'app');
+	const latestDiscordDirectory = join(discordDirectory, latestVersion, 'resources', 'app.asar');
 	return latestDiscordDirectory;
 }
 
