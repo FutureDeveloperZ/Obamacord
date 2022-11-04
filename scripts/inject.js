@@ -22,9 +22,9 @@ async function injectPatcher() {
 		return true;
 	}
 	catch (e) {
-		console.log(e);
 		console.log('Failed to inject');
 		console.log('Try Closing Discord down first');
+		return false;
 	}
 
 }
