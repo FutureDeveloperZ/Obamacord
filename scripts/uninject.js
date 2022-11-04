@@ -9,10 +9,20 @@ async function uninjectPatcher() {
 		console.log('Theres nothing to uninject');
 		return false;
 	}
-	await rm(discordDirectory, { recursive: true });
-	await rename(join(discordDirectory, '..', 'app.orig.asar'), discordDirectory);
-	console.log('Uninjected');
-	return true;
+	try {
+		await rm(discordDirectory, { recursive: true });
+		await rename(join(discordDirectory, '..', 'app.orig.asar'), discordDirectory);
+
+		console.log('Uninjected');
+		return true;
+
+	}
+	catch (e) {
+		console.log('Failed to uninject');
+		console.log('Try Closing Discord down first');
+		return false;
+	}
+
 
 }
 

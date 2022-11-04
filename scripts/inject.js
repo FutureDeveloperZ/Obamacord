@@ -8,17 +8,24 @@ async function injectPatcher() {
 		console.log('Patcher already injected');
 		return false;
 	}
-	await rename(discordDirectory, join(discordDirectory, '..', 'app.orig.asar'));
-	await mkdir(discordDirectory);
-	await Promise.all([
-		writeFile(join(discordDirectory, 'index.js'), `require(\`${__dirname.replace(RegExp(sep.repeat(2), 'g'), '/')}/../dist/patcher.js\`); require("../app.orig.asar");`),
-	]);
-	writeFile(
-		join(discordDirectory, 'package.json'),
-		JSON.stringify({ main: 'index.js', name: 'discord' }),
-	);
+	try {
+		await rename(discordDirectory, join(discordDirectory, '..', 'app.orig.asar'));
+		await mkdir(discordDirectory);
+		await Promise.all([
+			writeFile(join(discordDirectory, 'index.js'), `require(\`${__dirname.replace(RegExp(sep.repeat(2), 'g'), '/')}/../dist/patcher.js\`); require("../app.orig.asar");`),
+		]);
+		writeFile(
+			join(discordDirectory, 'package.json'),
+			JSON.stringify({ main: 'index.js', name: 'discord' }),
+		);
+		console.log('Injected');
+		return true;
+	}
+	catch (e) {
+		console.log(e);
+		console.log('Failed to inject');
+		console.log('Try Closing Discord down first');
+	}
 
-	console.log('Injected');
-	return true;
 }
 injectPatcher();
