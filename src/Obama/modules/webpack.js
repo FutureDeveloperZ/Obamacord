@@ -56,10 +56,48 @@ function allModules(filter) {
 
 }
 
+
 // get specific Module
 function getModule(filter) {
-	return allModules(filter)[0];
+	return allModules(filter)[0] || null;
 }
+
+// Filters
+function byDisplayName(name) {
+	return function(module) {
+		return module.displayName === name;
+	};
+}
+
+function byCode(code) {
+	return function(module) {
+		return module.toString().includes(code);
+	};
+}
+
+function byProps(props) {
+	return function(module) {
+		for (const prop in props) {
+			if (module[prop] !== props[prop]) {
+				return false;
+			}
+		}
+		return true;
+	};
+}
+
+function byPrototypes(prototypes) {
+	return function(module) {
+		for (const prototype in prototypes) {
+			if (module.prototype[prototype] !== prototypes[prototype]) {
+				return false;
+			}
+		}
+		return true;
+	};
+}
+
+
 
 module.exports = {
 	webpackChunk,
